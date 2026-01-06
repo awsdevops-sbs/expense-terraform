@@ -7,7 +7,7 @@ exit  1
 fi
 
 if [ -z "$action" ]; then
-echo "input (plan/apply/init) is missing"
+echo "input (apply/destroy) is missing"
 exit  1
 fi
 
