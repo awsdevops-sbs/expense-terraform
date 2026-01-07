@@ -1,0 +1,29 @@
+format_version: 10
+pipelines:
+  expense-tf-apply:
+    group: terraform
+    materials:
+      git-5766e3f:
+        git: https://github.com/awsdevops-sbs/expense-terraform.git
+        shallow_clone: false
+        auto_update: true
+        branch: main
+    stages:
+      - Dev:
+          fetch_materials: true
+          environment_variables:
+            env: dev
+          approval:
+            type: manual
+            allow_only_on_success: false
+          jobs:
+           terraform-apply:
+              tasks:
+                - exec: {command: terraform , arguments: ["init","-backend-config=state.tfvars"],"run_if: passed" }
+                - exec : {command: terraform , arguments: ["apply","-var-files=env-dev/main.tfvars","-auto-approve"],"run_if: passed" }
+
+
+
+
+
+
