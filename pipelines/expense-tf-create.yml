@@ -4,7 +4,7 @@ pipelines:
     group: terraform
     materials:
       git-5766e3f:
-        git: https://github.com/awsdevops-sbs/ansible.git
+        git: https://github.com/awsdevops-sbs/expense-terraform.git
         shallow_clone: false
         auto_update: true
         branch: main
