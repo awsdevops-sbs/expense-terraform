@@ -26,7 +26,7 @@ resource "null_resource" "ansible" {
 
     inline = [
       "sudo pip3.11 install ansible -y" ,
-      "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/expense-terraform.git  expense.yml -e role_name=${var.component} -e env=${var.dev}"
+      "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/expense-terraform.git  expense.yml -e role_name=${var.component} -e env=${var.env}"
 
     ]
   }
@@ -35,7 +35,7 @@ resource "null_resource" "ansible" {
 
 
 resource "aws_route53_record" "record" {
-  name    = "${var.component}-${var.dev}"
+  name    = "${var.component}-${var.env}"
   type    = "A"
   zone_id = "${var.zone_id}"
   records = [aws_instance_instance_private_ip]
