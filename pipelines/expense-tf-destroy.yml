@@ -19,9 +19,6 @@ pipelines:
           jobs:
             terraform-destroy:
               tasks:
-                - exec: { command: terraform , arguments: [ "init","-backend-config=state.tfvars" ], run_if: passed }
-                - exec: { command: terraform , arguments: [ "destroy","-var-files=env-dev/main.tfvars","-auto-approve" ],run_if: passed }
-
 
 
 
