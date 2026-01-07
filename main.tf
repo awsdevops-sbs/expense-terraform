@@ -2,7 +2,7 @@ module "frontend" {
   source = "./modules/app"
   component = "frontend"
   instance_type = var.instance_type
-
+  env = var.env
   ssh_user = var.ssh_user
   ssh_pass = var.ssh_pass
   zone_id = var.zone_id
