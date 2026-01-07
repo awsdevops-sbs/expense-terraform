@@ -9,6 +9,7 @@ module "frontend" {
 }
 
 module "backend" {
+  depends_on = [module.mysql]
   source = "./modules/app"
   component = "backend"
   instance_type = var.instance_type
