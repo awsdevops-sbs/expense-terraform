@@ -3,9 +3,8 @@ module "frontend" {
   source        = "./modules/app"
   component     = "frontend"
   instance_type = var.instance_type
+  vault_token             = var.vault_token
   env           = var.env
-  ssh_user = var.ssh_user
-  ssh_pass = var.ssh_pass
   zone_id = var.zone_id
 }
 
@@ -14,9 +13,10 @@ module "backend" {
   source = "./modules/app"
   component = "backend"
   instance_type = var.instance_type
+  vault_token   = var.vault_token
   env = var.env
-  ssh_user = var.ssh_user
-  ssh_pass = var.ssh_pass
+
+
   zone_id = var.zone_id
 }
 module "mysql" {
@@ -24,7 +24,6 @@ module "mysql" {
   component = "mysql"
   instance_type = var.instance_type
   env = var.env
-  ssh_user = var.ssh_user
-  ssh_pass = var.ssh_pass
+  vault_token   = var.vault_token
   zone_id = var.zone_id
 }
