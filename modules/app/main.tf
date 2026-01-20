@@ -29,7 +29,7 @@ resource "null_resource" "ansible" {
     inline = [
       "sudo pip3.11 install ansible",
       "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  get-secrets.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${vault_token} ",
-      "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  expense.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${vault_token} -e '@secret.json'"
+      "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  expense.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${vault_token} -e '~@secret.json'"
 
     ]
   }
