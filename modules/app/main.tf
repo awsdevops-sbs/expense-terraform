@@ -30,7 +30,7 @@ resource "null_resource" "ansible" {
       "rm -f ~/*.json",
       #"sudo pip3.11 install ansible hvac",
 
-      "sudo pip3.13 install hvac",
+      "sudo pip3.11 install hvac",
       #"sudo /usr/bin/python3.13 -m pip install --upgrade pip",
       #"sudo /usr/bin/python3.13 -m pip install ansible hvac",
       "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  get-secrets.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${var.vault_token} ",
