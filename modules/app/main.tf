@@ -29,7 +29,7 @@ resource "null_resource" "ansible" {
 
     inline = [
       "rm -f ~/*.json",
-      "sudo pip3.12 install ansible hvac",
+      "sudo pip3.11 install ansible hvac",
 
       #"sudo pip3.11 install hvac",
       #"sudo /usr/bin/python3.13 -m pip install --upgrade pip",
