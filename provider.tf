@@ -6,6 +6,8 @@ terraform {
     }
   }
 }
+provider "http" {}
+
 provider "vault" {
   address             = "https://vault.awsdevops.sbs:8200"
   token               = var.vault_token
