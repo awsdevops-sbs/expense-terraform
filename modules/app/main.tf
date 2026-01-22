@@ -30,12 +30,8 @@ resource "null_resource" "ansible" {
     inline = [
       "rm -f ~/*.json",
       "sudo pip3.9 install ansible hvac",
-
-      #"sudo pip3.11 install hvac",
-      #"sudo /usr/bin/python3.13 -m pip install --upgrade pip",
-      #"sudo /usr/bin/python3.13 -m pip install ansible hvac",
       "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  get-secrets.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${var.vault_token} ",
-      "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  expense.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${var.vault_token} -e  @~/secrets.json -e @~/app.json"
+      "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  expense.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${var.vault_token} -e  @~/secret.json -e @~/app.json"
 
     ]
   }
