@@ -26,34 +26,18 @@ resource "null_resource" "ansible" {
 
     }
 
+
     inline = [
-      # Clean up any old JSON files
       "rm -f ~/*.json",
+      "sudo pip3.12 install ansible hvac",
 
-      # Ensure pip for Python 3.11 is up to date
-      "sudo /usr/bin/python3.11 -m ensurepip --upgrade",
-      "sudo /usr/bin/python3.11 -m pip install --upgrade pip",
+      #"sudo pip3.11 install hvac",
+      #"sudo /usr/bin/python3.13 -m pip install --upgrade pip",
+      #"sudo /usr/bin/python3.13 -m pip install ansible hvac",
+      "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  get-secrets.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${var.vault_token} ",
+      "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  expense.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${var.vault_token} -e '@~/secret.json' -e '@~/@app.json'"
 
-      # Install hvac (already installed, but safe to re-run)
-      "sudo /usr/bin/python3.11 -m pip install hvac",
-
-      # Run ansible-pull using the correct Python
-      "ansible-pull -i localhost, -U https://github.com/awsdevops-sbs/ansible.git get-secrets.yml -e role_name=${var.component} -e env=${var.env} -e vault_token=${var.vault_token} -e 'ansible_python_interpreter=/usr/bin/python3.11'",
-      "ansible-pull -i localhost, -U https://github.com/awsdevops-sbs/ansible.git expense.yml -e role_name=${var.component} -e env=${var.env} -e vault_token=${var.vault_token} -e '@~/secret.json' -e '@~/@app.json'"
     ]
-
-
-    # inline = [
-    #   "rm -f ~/*.json",
-    #   #"sudo pip3.11 install ansible hvac",
-    #
-    #   "sudo pip3.11 install hvac",
-    #   #"sudo /usr/bin/python3.13 -m pip install --upgrade pip",
-    #   #"sudo /usr/bin/python3.13 -m pip install ansible hvac",
-    #   "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  get-secrets.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${var.vault_token} ",
-    #   "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  expense.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${var.vault_token} -e '@~/secret.json' -e '@~/@app.json'"
-    #
-    # ]
   }
 
 }
