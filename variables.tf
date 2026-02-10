@@ -4,3 +4,4 @@ variable "instance_type" {}
 # variable "ssh_pass" {}
 variable "zone_id" {}
 variable "vault_token" {}
+variable "new_relic_key" {}
