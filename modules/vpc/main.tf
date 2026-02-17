@@ -1,5 +1,5 @@
 resource "aws_vpc" "main" {
-  vpc_cidr_block       = aws_vpc.main.vpc_cidr_block
+  cidr_block       = var.vpc_cidr_block
 
 
   tags = {
