@@ -19,6 +19,6 @@ variable "backend_subnet" {}
 variable "db_subnet" {}
 variable "availability_zone" {}
 
-variable "subnets" {}
+
 
 
