@@ -69,6 +69,7 @@ resource "aws_subnet" "db_subnet" {
   cidr_block  = var.db_subnet[count.index]
   availability_zone = var.availability_zone[count.index]
 
+
   tags = {
     Name = "${var.env}-db_subnet-${count.index + 1}"
   }
