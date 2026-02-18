@@ -11,3 +11,4 @@ variable "db_subnet" {}
 variable "availability_zone" {}
 
 variable "vpc_id" {}
+variable "subnets" {}
