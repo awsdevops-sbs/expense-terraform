@@ -6,3 +6,5 @@ variable "component" {}
 variable "zone_id" {}
 variable "vault_token" {}
 #variable "new_relic_key" {}
+
+variable "vpc_id" {}

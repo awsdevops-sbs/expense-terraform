@@ -25,7 +25,9 @@ module "mysql" {
   instance_type = var.instance_type
   env = var.env
   vault_token   = var.vault_token
-  zone_id = var.zone_id
+  #zone_id = var.zone_id
+  subnet = module.vpc.db_subnet
+  vpc_id = module.vpc.vpc_id
 }
 
 module "vpc" {
