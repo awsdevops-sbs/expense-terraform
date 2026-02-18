@@ -8,3 +8,4 @@ variable "vault_token" {}
 #variable "new_relic_key" {}
 
 variable "vpc_id" {}
+variable "subnets" {}
