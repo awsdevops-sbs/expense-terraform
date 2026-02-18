@@ -19,14 +19,14 @@
 #
 #   zone_id = var.zone_id
 # }
-# module "mysql" {
-#   source = "./modules/app"
-#   component = "mysql"
-#   instance_type = var.instance_type
-#   env = var.env
-#   vault_token   = var.vault_token
-#   zone_id = var.zone_id
-# }
+module "mysql" {
+  source = "./modules/app"
+  component = "mysql"
+  instance_type = var.instance_type
+  env = var.env
+  vault_token   = var.vault_token
+  zone_id = var.zone_id
+}
 
 module "vpc" {
   source = "./modules/vpc"
