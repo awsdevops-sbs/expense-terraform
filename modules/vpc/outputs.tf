@@ -14,5 +14,5 @@ output "db_subnet" {
 }
 
 output "public_subnet" {
-  value = aws_subnet.db_subnet.*.id
+  value = aws_subnet.public.*.id
 }
