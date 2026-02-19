@@ -75,6 +75,20 @@ resource "aws_subnet" "db_subnet" {
   }
 }
 
+resource "aws_subnet" "public" {
+  count      = length(var.public_subnet)
+  vpc_id      = aws_vpc.main.id
+  cidr_block  = var.public_subnet[count.index]
+  availability_zone = var.availability_zone[count.index]
+
+
+  tags = {
+    Name = "${var.env}-db_subnet-${count.index + 1}"
+  }
+}
+
+
+
 resource "aws_route" "main" {
   route_table_id            = aws_vpc.main.default_route_table_id
   destination_cidr_block    = var.default_cidr_block

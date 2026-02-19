@@ -33,6 +33,7 @@ module "mysql" {
   zone_id = var.zone_id
   subnets = module.vpc.db_subnet
   vpc_id = module.vpc.vpc_id
+  #public_subnet = module.vpc.public_subnet
 }
 
 module "vpc" {
@@ -46,6 +47,7 @@ module "vpc" {
   frontend_subnet = var.frontend_subnet
   backend_subnet = var.backend_subnet
   db_subnet = var.db_subnet
+  public_subnet = var.public_subnet
   availability_zone = var.availability_zone
 
 

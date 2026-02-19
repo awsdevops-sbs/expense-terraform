@@ -11,4 +11,4 @@ variable "db_subnet" {}
 variable "availability_zone" {}
 
 
-
+variable "public_subnet" {}

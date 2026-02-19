@@ -13,7 +13,7 @@ variable "default_vpc_id" {}
 variable "default_cidr_block" {}
 
 variable "default_route_id" {}
-
+variable "public_subnet" {}
 variable "frontend_subnet" {}
 variable "backend_subnet" {}
 variable "db_subnet" {}
