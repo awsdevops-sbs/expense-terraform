@@ -83,7 +83,7 @@ resource "aws_subnet" "public" {
 
 
   tags = {
-    Name = "${var.env}-db_subnet-${count.index + 1}"
+    Name = "${var.env}-public_subnet-${count.index + 1}"
   }
 }
 
