@@ -21,7 +21,8 @@ pipelines:
           jobs:
            terraform-apply:
              tasks:
-             - exec: {command: terraform, arguments: [ "init", "-upgrade" , "-reconfigure" , "-backend-config=env-dev/state.tfvars"], run_if: passed }
+             - exec: { command: sh, arguments: [ "-c", "rm -rf .terraform && rm -f .terraform.lock.hcl && terraform version && terraform init -upgrade -reconfigure -backend-config=env-dev/state.tfvars" ], run_if: passed }
+            # - exec: {command: terraform, arguments: [ "init", "-upgrade" , "-reconfigure" , "-backend-config=env-dev/state.tfvars"], run_if: passed }
              - exec: {command: terraform, arguments: [ "apply", "-var-file=env-dev/main.tfvars", "-auto-approve"], run_if: passed }
 
 
