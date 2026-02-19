@@ -13,6 +13,7 @@ default_route_id = "rtb-0fedb05ba9d826ae9"
 frontend_subnet   =["10.10.0.0/27","10.10.0.32/27"]
 backend_subnet    =["10.10.0.64/27", "10.10.0.96/27"]
 db_subnet         =["10.10.0.128/27", "10.10.0.160/27"]
+
 availability_zone =["us-east-1a","us-east-1b"]
 
 
