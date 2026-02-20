@@ -1,12 +1,3 @@
-# terraform {
-#   required_providers {
-#     aws = {
-#       source  = "hashicorp/aws"
-#       version = "4.5.0"
-#     }
-#   }
-# }
-
 
 terraform {
   required_providers {
@@ -53,10 +44,20 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-resource "aws_eip" "igw" {
+resource "aws_eip" "ngw" {
   count      = length(var.public_subnet)
   domain = "vpc"
 
+}
+
+resource "aws_nat_gateway" "ngw" {
+  count = length(var.public_subnet)
+  subnet_id = aws_subnet.public[count.index].id
+  allocation_id = aws_eip.ngw[count.index].id
+
+  tags = {
+    Name = "${var.env}-ngw-${count.index + 1}"
+  }
 }
 
 resource "aws_subnet" "frontend_subnet" {
@@ -82,7 +83,8 @@ resource "aws_route_table" "frontend" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw.id
+
+    nat_gateway_id = aws_nat_gateway.ngw.id
   }
 
   tags = {
@@ -120,7 +122,7 @@ resource "aws_route_table" "backend" {
   }
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw.id
+    nat_gateway_id = aws_nat_gateway.ngw.id
   }
 
   tags = {
@@ -178,7 +180,8 @@ resource "aws_route_table" "db" {
   }
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw.id
+
+    nat_gateway_id = aws_nat_gateway.ngw.id
   }
 
   tags = {
