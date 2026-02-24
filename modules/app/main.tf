@@ -99,9 +99,9 @@ resource "null_resource" "ansible" {
 }
 
 resource "aws_lb" "main" {
-  count = var.lb_needed ? false : true
+  count = var.lb_needed ? 1 : 0
   name               = "${var.component}-${var.env}-alb"
-  internal           = var.lb_type == "public" ? 1 : 0
+  internal           = var.lb_type == "public" ? false : true
   load_balancer_type = "application"
   security_groups    = [aws_security_group.main.id]
   subnets            =  var.subnets
