@@ -98,6 +98,20 @@ resource "null_resource" "ansible" {
 
 }
 
+resource "aws_lb" "main" {
+  count = var.lb_needed ? false : true
+  name               = "${var.component}-${var.env}-alb"
+  internal           = var.lb_type == "public" ? 1 : 0
+  load_balancer_type = "application"
+  security_groups    = [aws_security_group.main.id]
+  subnets            =  var.subnets
+
+
+  tags = {
+    Environment ="${var.component}-${var.env}-lb"
+  }
+}
+
 
 resource "aws_route53_record" "record" {
   name    = "${var.component}-${var.env}"

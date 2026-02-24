@@ -9,3 +9,15 @@ variable "vault_token" {}
 
 variable "vpc_id" {}
 variable "subnets" {}
+
+variable "lb_type" {
+  default = null
+
+}
+variable "lb_needed" {
+  default = null
+}
+
+variable "lb_subnets" {
+  default = null
+}

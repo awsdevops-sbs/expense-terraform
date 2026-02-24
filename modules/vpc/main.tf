@@ -244,6 +244,7 @@ resource "aws_route_table_association" "public" {
 
 
 
+
 resource "aws_route" "default_vpc" {
   route_table_id            = var.default_route_id
   destination_cidr_block    = var.vpc_cidr_block

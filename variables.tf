@@ -19,6 +19,15 @@ variable "backend_subnet" {}
 variable "db_subnet" {}
 variable "availability_zone" {}
 
+variable "lb_type" {
+  default = null
+}
 
+variable "lb_needed" {
+  default = null
+}
+variable "lb_subnets" {
+  default = null
+}
 
 
