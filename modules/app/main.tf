@@ -125,6 +125,7 @@ resource "aws_lb_target_group" "main" {
 
   health_check {
     path                = "/health"
+
     interval            = 5
     timeout             = 2
     healthy_threshold   = 2
@@ -147,7 +148,7 @@ resource "aws_lb_target_group_attachment" "main" {
 
 
 resource "aws_lb_listener" "frontend-http" {
-  count = var.lb_needed ? 1 : 0
+  count = var.lb_needed && var.lb_type == "public" ? 1 : 0
   load_balancer_arn = aws_lb.main[0].arn
   port              = var.app_port
   protocol          = "HTTP"
@@ -161,11 +162,30 @@ resource "aws_lb_listener" "frontend-http" {
 }
 
 
-resource "aws_route53_record" "record" {
+resource "aws_route53_record" "server" {
+  count = var.lb_needed ? 1 : 0
   name    = "${var.component}-${var.env}"
   type    = "A"
   zone_id = "${var.zone_id}"
   records = [aws_instance.instance.private_ip]
+  ttl     = "3"
+}
+
+resource "aws_route53_record" "load-balancer" {
+  count = var.lb_needed ? 1 : 0
+  name    = "${var.component}-${var.env}"
+  type    = "CNAME"
+  zone_id = "${var.zone_id}"
+  records = [aws_lb.main[0].dns_name]
   ttl     = "300"
 }
+
+
+# resource "aws_route53_record" "record" {
+#   name    = "${var.component}-${var.env}"
+#   type    = "A"
+#   zone_id = "${var.zone_id}"
+#   records = [aws_instance.instance.private_ip]
+#   ttl     = "300"
+# }
 
