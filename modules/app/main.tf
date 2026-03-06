@@ -168,7 +168,7 @@ resource "aws_route53_record" "server" {
   type    = "A"
   zone_id = "${var.zone_id}"
   records = [aws_instance.instance.private_ip]
-  ttl     = "3"
+  ttl     = "30"
 }
 
 resource "aws_route53_record" "load-balancer" {
@@ -177,7 +177,7 @@ resource "aws_route53_record" "load-balancer" {
   type    = "CNAME"
   zone_id = "${var.zone_id}"
   records = [aws_lb.main[0].dns_name]
-  ttl     = "300"
+  ttl     = "30"
 }
 
 resource "aws_lb_listener" "backend" {
