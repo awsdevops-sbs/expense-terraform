@@ -126,7 +126,7 @@ resource "aws_route_table" "frontend" {
   vpc_id      = aws_vpc.main.id
 
   route {
-    cidr_block = var.default_vpc_id
+    cidr_block = var.default_cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   }
 
