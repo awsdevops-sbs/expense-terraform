@@ -58,7 +58,7 @@ resource "aws_subnet" "public" {
   vpc_id      = aws_vpc.main.id
   cidr_block  = var.public_subnet[count.index]
   availability_zone = var.availability_zone[count.index]
-
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "${var.env}-public_subnet-${count.index + 1}"
@@ -82,10 +82,6 @@ resource "aws_route_table" "public" {
     Name = "${var.env}-public-rt-${count.index + 1}"
   }
 }
-
-
-
-
 
 
 resource "aws_eip" "ngw" {
@@ -130,7 +126,7 @@ resource "aws_route_table" "frontend" {
   vpc_id      = aws_vpc.main.id
 
   route {
-    cidr_block = var.default_vpc_id
+    cidr_block = var.default_cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   }
 
@@ -169,7 +165,7 @@ resource "aws_route_table" "backend" {
   vpc_id      = aws_vpc.main.id
 
   route {
-    cidr_block = var.default_vpc_id
+    cidr_block = var.default_cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   }
   route {
@@ -218,7 +214,7 @@ resource "aws_route_table" "db" {
   vpc_id      = aws_vpc.main.id
 
   route {
-    cidr_block = var.default_vpc_id
+    cidr_block = var.default_cidr_block
     vpc_peering_connection_id = aws_vpc_peering_connection.main.id
   }
   route {
