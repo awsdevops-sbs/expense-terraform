@@ -114,7 +114,7 @@ resource "aws_subnet" "frontend_subnet" {
   vpc_id      = aws_vpc.main.id
   cidr_block  = var.frontend_subnet[count.index]
   availability_zone = var.availability_zone[count.index]
-
+  map_public_ip_on_launch = true
 
   tags = {
     Name = "${var.env}-frontend_subnet-${count.index + 1}"
