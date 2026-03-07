@@ -108,7 +108,6 @@ resource "aws_lb" "main" {
 
 
 
-
   tags = {
     Environment ="${var.component}-${var.env}-lb"
   }
@@ -125,7 +124,6 @@ resource "aws_lb_target_group" "main" {
 
   health_check {
     path                = "/health"
-
     interval            = 5
     timeout             = 2
     healthy_threshold   = 2
