@@ -66,7 +66,7 @@ resource "aws_security_group" "load-balancer" {
 
     from_port   = var.app_port
     to_port     = var.app_port
-    protocol    = "-1"
+    protocol    = "TCP"
     cidr_blocks = var.lb_app_port_sg_cidr
   }
 
