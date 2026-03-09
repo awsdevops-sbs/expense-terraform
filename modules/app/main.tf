@@ -14,6 +14,7 @@ terraform {
 
 
 resource "aws_security_group" "main" {
+
   name        = "${var.component}-${var.env}-sg"
   description = "${var.component}-${var.env}-sg"
   vpc_id      = var.vpc_id
@@ -56,6 +57,7 @@ resource "aws_security_group" "main" {
 
 
 resource "aws_security_group" "load-balancer" {
+  count = var.lb_needed ? 1 : 0
   name        = "${var.component}-${var.env}-lb-sg"
   description = "${var.component}-${var.env}-lb-sg"
   vpc_id      = var.vpc_id
