@@ -17,5 +17,8 @@ public_subnet      =["10.10.0.192/27","10.10.0.224/27"]
 
 availability_zone =["us-east-1a","us-east-1b"]
 
+bastion_nodes = ["172.31.79.79/32"]
+prometheus_nodes = ["172.31.16.63/32"]
+
 
 
