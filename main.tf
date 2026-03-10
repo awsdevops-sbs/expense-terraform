@@ -49,7 +49,7 @@ module "mysql" {
   vpc_id = module.vpc.vpc_id
   #public_subnet = module.vpc.public_subnet
   lb_needed = "false"
-  app_port = 3309
+  app_port = 3306
   server_app_port_sg_cidr = var.backend_subnet
   bastion_nodes    = var.bastion_nodes
   prometheus_nodes = var.prometheus_nodes
