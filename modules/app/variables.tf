@@ -26,6 +26,8 @@ variable "app_port"  {
   default = null
 }
 
+
+
 variable "server_app_port_sg_cidr" {}
 
 variable "bastion_nodes" {}
@@ -39,4 +41,7 @@ variable "lb_app_port_sg_cidr" {
 
 variable "acm_certificate_arn" {}
 
+variable "lb_ports" {
 
+  default = {}
+}

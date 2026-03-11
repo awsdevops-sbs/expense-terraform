@@ -13,10 +13,12 @@ module "frontend" {
   lb_subnets        = module.vpc.public_subnet
   app_port          = 80
   server_app_port_sg_cidr = var.public_subnet
-  lb_app_port_sg_cidr = ["0.0.0.0/0"]
-  bastion_nodes    = var.bastion_nodes
-  prometheus_nodes = var.prometheus_nodes
+  lb_app_port_sg_cidr     = ["0.0.0.0/0"]
+  bastion_nodes            = var.bastion_nodes
+  prometheus_nodes     = var.prometheus_nodes
   acm_certificate_arn = var.acm_certificate_arn
+  lb_ports            =  {http:80, https:443}
+
 }
 #
 module "backend" {

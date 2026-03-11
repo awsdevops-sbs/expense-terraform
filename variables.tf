@@ -40,3 +40,8 @@ variable "bastion_nodes" {}
 variable "prometheus_nodes" {}
 
 variable "acm_certificate_arn" {}
+
+variable "lb_ports" {
+
+  default = {}
+}
