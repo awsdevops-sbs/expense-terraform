@@ -22,7 +22,7 @@ module "frontend" {
 }
 #
 module "backend" {
-  depends_on = [module.mysql]
+  depends_on = [module.rds]
   source      = "./modules/app"
   component = "backend"
   instance_type = var.instance_type
@@ -68,9 +68,9 @@ module "rds" {
   component               = "rds"
   engine                  = "mysql"
   engine_version          = "8.0.36"
-  instance_class          = "db.t3.micro"
   env                     =  var.env
   family                  =  "mysql8.0"
+  instance_class          = "db.t3.micro"
   subnets                 = module.vpc.db_subnet
   vpc_id                  = module.vpc.vpc_id
   server_app_port_sg_cidr = var.backend_subnet
