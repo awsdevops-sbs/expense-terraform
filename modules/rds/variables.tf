@@ -2,7 +2,10 @@ variable "component" {}
 variable "env" {}
 variable "family" {}
 variable "subnets" {}
-variable "storage_type" {}
+variable "storage_type" {
+
+  default = null
+}
 variable "skip_final_snapshot" {}
 variable "instance_class" {}
 variable "engine_version" {}
