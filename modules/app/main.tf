@@ -270,18 +270,7 @@ resource "aws_route53_record" "load-balancer" {
   ttl     = "30"
 }
 
-resource "aws_lb_listener" "backend" {
-  count             = var.lb_needed && var.lb_type != "public" ? 1 : 0
-  load_balancer_arn = aws_lb.main[0].arn
-  port              = var.app_port
-  protocol          = "HTTP"
 
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.main[0].arn
-  }
-
-}
 # resource "aws_route53_record" "record" {
 #   name    = "${var.component}-${var.env}"
 #   type    = "A"
