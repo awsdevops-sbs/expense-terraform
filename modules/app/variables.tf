@@ -37,4 +37,6 @@ variable "lb_app_port_sg_cidr" {
   default = []
 }
 
+variable "acm_certificate_arn" {}
+
 

@@ -20,7 +20,7 @@ availability_zone =["us-east-1a","us-east-1b"]
 bastion_nodes = ["172.31.79.79/32"]
 prometheus_nodes = ["172.31.16.63/32"]
 
-
+acm_certificate_arn = "arn:aws:acm:us-east-1:001068834011:certificate/8aaa81fe-b9dc-4efe-a76e-2bacefc4a5f3"
 
 
 

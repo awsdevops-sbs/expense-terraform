@@ -16,6 +16,7 @@ module "frontend" {
   lb_app_port_sg_cidr = ["0.0.0.0/0"]
   bastion_nodes    = var.bastion_nodes
   prometheus_nodes = var.prometheus_nodes
+  acm_certificate_arn = var.acm_certificate_arn
 }
 #
 module "backend" {
@@ -36,6 +37,7 @@ module "backend" {
   bastion_nodes    = var.bastion_nodes
   prometheus_nodes = var.prometheus_nodes
   lb_app_port_sg_cidr = var.frontend_subnet
+  acm_certificate_arn = var.acm_certificate_arn
 }
 
 module "mysql" {
@@ -53,6 +55,7 @@ module "mysql" {
   server_app_port_sg_cidr = var.backend_subnet
   bastion_nodes    = var.bastion_nodes
   prometheus_nodes = var.prometheus_nodes
+  acm_certificate_arn = var.acm_certificate_arn
 
 }
 

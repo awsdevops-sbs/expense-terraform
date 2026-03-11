@@ -39,3 +39,4 @@ variable "bastion_nodes" {}
 
 variable "prometheus_nodes" {}
 
+variable "acm_certificate_arn" {}
