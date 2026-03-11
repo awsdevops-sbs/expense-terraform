@@ -16,4 +16,4 @@ variable "allocated_storage" {
 
 variable "vpc_id" {}
 
-variable "serserver_app_port_sg_cidr" {}
+variable "server_app_port_sg_cidr" {}

@@ -43,7 +43,7 @@ resource "aws_security_group" "main" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "TCP"
-    cidr_blocks = var.serserver_app_port_sg_cidr
+    cidr_blocks = var.server_app_port_sg_cidr
   }
 
   egress {
