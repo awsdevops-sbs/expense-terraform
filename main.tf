@@ -43,24 +43,50 @@ module "backend" {
   lb_ports            =  {http:80}
 }
 
-module "mysql" {
-  source = "./modules/app"
-  component = "mysql"
-  instance_type = var.instance_type
-  env = var.env
-  vault_token   = var.vault_token
-  zone_id = var.zone_id
-  subnets = module.vpc.db_subnet
-  vpc_id = module.vpc.vpc_id
-  #public_subnet = module.vpc.public_subnet
-  lb_needed = "false"
-  app_port = 3306
+# module "mysql" {
+#   source = "./modules/app"
+#   component = "mysql"
+#   instance_type = var.instance_type
+#   env = var.env
+#   vault_token   = var.vault_token
+#   zone_id = var.zone_id
+#   subnets = module.vpc.db_subnet
+#   vpc_id = module.vpc.vpc_id
+#   #public_subnet = module.vpc.public_subnet
+#   lb_needed = "false"
+#   app_port = 3306
+#   server_app_port_sg_cidr = var.backend_subnet
+#   bastion_nodes    = var.bastion_nodes
+#   prometheus_nodes = var.prometheus_nodes
+#   acm_certificate_arn = var.acm_certificate_arn
+#
+# }
+
+module "rds" {
+  source = "./modules/rds"
+  allocated_storage       = 20
+  component               = "rds"
+  engine                  = "mysql"
+  engine_version          = "8.0.36"
+  instance_class          = "db.t3.micro"
+  env                     =  var.env
+  family                  =  "mysql8.0"
+  subnets                 = module.vpc.db_subnet
+  vpc_id                  = module.vpc.vpc_id
   server_app_port_sg_cidr = var.backend_subnet
-  bastion_nodes    = var.bastion_nodes
-  prometheus_nodes = var.prometheus_nodes
-  acm_certificate_arn = var.acm_certificate_arn
+  skip_final_snapshot     = true
+  storage_type            = "gp3"
 
 }
+
+
+
+
+
+
+
+
+
 
 module "vpc" {
   source = "./modules/vpc"
