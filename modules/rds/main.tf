@@ -10,7 +10,7 @@ resource "aws_db_instance" "default" {
   parameter_group_name = aws_db_parameter_group.main.name
   skip_final_snapshot  = var.skip_final_snapshot
   storage_type         = var.storage_type
-  publicly_accessible   = no
+  publicly_accessible   = false
   db_subnet_group_name = aws_db_subnet_group.default
   vpc_security_group_ids = [aws_security_group.main.id]
   multi_az               = false
