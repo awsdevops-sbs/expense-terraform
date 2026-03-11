@@ -1,3 +1,3 @@
-data "vault_generic_secret" "ssh" {
+data "vault_generic_secret" "rds" {
   path = "rds/$(var.env)"
 }
