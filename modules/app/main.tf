@@ -137,7 +137,8 @@ resource "null_resource" "ansible" {
       "sudo pip3 install ansible hvac",
 
       "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  get-secrets.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${var.vault_token} ",
-      "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  expense.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${var.vault_token} -e  @~/secret.json -e @~/app.json"
+      "ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  expense.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${var.vault_token} -e  @~/secret.json "
+      #"ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  expense.yml -e role_name=${var.component}  -e env=${var.env} -e vault_token=${var.vault_token} -e  @~/secret.json -e @~/app.json"
       #"ansible-pull  -i localhost, -U https://github.com/awsdevops-sbs/ansible.git  expense.yml -e role_name=${var.component} -e NEW_RELIC_KEY=${var.new_relic_key} -e env=${var.env} -e vault_token=${var.vault_token} -e  @~/secret.json -e @~/app.json"
 
     ]
@@ -145,7 +146,8 @@ resource "null_resource" "ansible" {
 
   provisioner "remote-exec" {
     inline = [
-      "rm -f ~/secrets.json ~/app.json"
+      #"rm -f ~/secrets.json ~/app.json"
+      "rm -f ~/secrets.json "
     ]
   }
 
