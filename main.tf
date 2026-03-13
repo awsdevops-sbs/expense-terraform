@@ -40,7 +40,7 @@ module "backend" {
   prometheus_nodes = var.prometheus_nodes
   lb_app_port_sg_cidr = var.frontend_subnet
   acm_certificate_arn = var.acm_certificate_arn
-  lb_ports            =  {http:8080}
+  lb_ports            =  { http : 8080 }
 }
 
 # module "mysql" {
