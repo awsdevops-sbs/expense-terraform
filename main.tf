@@ -18,6 +18,7 @@ module "frontend" {
   prometheus_nodes     = var.prometheus_nodes
   acm_certificate_arn = var.acm_certificate_arn
   lb_ports            =  {http:80, https:443}
+  kms_key_id = var.kms_key_id
 
 }
 #
@@ -41,6 +42,8 @@ module "backend" {
   lb_app_port_sg_cidr = var.frontend_subnet
   acm_certificate_arn = var.acm_certificate_arn
   lb_ports            =  { http : 8080 }
+  kms_key_id = var.kms_key_id
+
 }
 
 # module "mysql" {
@@ -76,6 +79,7 @@ module "rds" {
   server_app_port_sg_cidr = var.backend_subnet
   skip_final_snapshot     = true
   storage_type            = "gp3"
+  kms_key_id = var.kms_key_id
 
 }
 
