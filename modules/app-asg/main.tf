@@ -193,20 +193,26 @@ resource "aws_lb_listener" "frontend-http" {
 
 }
 
+
 resource "aws_lb_listener" "frontend-https" {
-  count             = var.lb_type == "public" ? 1 : 0
+  count = var.lb_type == "public" ? 1 : 0
   load_balancer_arn = aws_lb.main.arn
-  port              = "443"
+  port              = 443
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-2021-06"
-  certificate_arn   = var.certificate_arn
+  ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-Res-PQ-2025-09"
+  certificate_arn   = var.acm_certificate_arn
 
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.main.arn
   }
-
 }
+
+
+
+
+
+
 
 resource "aws_lb_listener" "backend" {
   count             = var.lb_type != "public" ? 1 : 0

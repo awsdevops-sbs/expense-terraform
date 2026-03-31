@@ -26,6 +26,8 @@ variable "kms_key_id" {}
 variable "min_capacity" {}
 variable "max_capacity" {}
 
+variable "acm_certificate_arn" {}
+
 
 
 
