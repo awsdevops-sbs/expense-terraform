@@ -63,6 +63,13 @@ module "frontend" {
   prometheus_nodes          = var.prometheus_nodes
   vault_token               = var.vault_token
 
+  certificate_arn         = var.acm_certificate_arn
+  lb_app_port_sg_cidr     = ["0.0.0.0/0"]
+  lb_ports                = { http : 80, https : 443 }
+  lb_subnets              = module.vpc.public_subnet
+  lb_type                 = "public"
+  kms_key_id              = var.kms_key_id
+
 }
 
 
@@ -82,7 +89,12 @@ module "backend" {
   server_app_port_sg_cidr   = concat(var.frontend_subnet,var.backend_subnet)
   prometheus_nodes          = var.prometheus_nodes
   vault_token               = var.vault_token
-
+  certificate_arn         = var.acm_certificate_arn
+  lb_app_port_sg_cidr     = var.frontend_subnet
+  lb_ports                = { http : 8080 }
+  lb_subnets              = module.vpc.backend_subnet
+  lb_type                 = "private"
+  kms_key_id              = var.kms_key_id
 }
 
 module "rds" {
