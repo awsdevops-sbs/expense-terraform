@@ -56,7 +56,7 @@ resource "aws_launch_template" "main" {
     ebs {
       volume_size           = 20
       encrypted             = true
-      kms_key_id            = var.kms_key_id
+      #kms_key_id            = var.kms_key_id
       delete_on_termination = true
     }
   }
