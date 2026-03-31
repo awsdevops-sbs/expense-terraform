@@ -46,6 +46,24 @@
 #
 # }
 
+module "frontend" {
+  depends_on                = [module.rds]
+  source                    = "./modules/app-asg"
+  app_port                  = 80
+  bastion_nodes             = var.bastion_nodes
+  component                 = "frontend"
+  env                       = var.env
+  instance_type             = var.instance_type
+  max_capacity              = var.max_capacity
+  min_capacity              = var.min_capacity
+  subnets                   = module.vpc.frontend_subnet
+  vpc_id                    = module.vpc.vpc_id
+  zone_id                   = var.zone_id
+  server_app_port_sg_cidr   = var.public_subnet
+  prometheus_nodes          = var.prometheus_nodes
+  vault_token               = var.vault_token
+
+}
 
 
 module "backend" {
@@ -73,11 +91,11 @@ module "rds" {
   component                 = "rds"
   engine                    = "mysql"
   engine_version            = "8.0.40"
-  env                       =  var.env
-  family                    =  "mysql8.0"
+  env                       = var.env
+  family                    = "mysql8.0"
   instance_class            = "db.t3.micro"
   subnets                   = module.vpc.db_subnet
-  vpc_id                    =  module.vpc.vpc_id
+  vpc_id                    = module.vpc.vpc_id
   server_app_port_sg_cidr   = var.backend_subnet
   skip_final_snapshot       = true
   storage_type              = "gp3"
