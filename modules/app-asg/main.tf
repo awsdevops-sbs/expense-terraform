@@ -79,6 +79,9 @@ resource "aws_autoscaling_group" "main" {
   vpc_zone_identifier = var.subnets
   target_group_arns   =  [aws_lb_target_group.main.arn]
 
+  health_check_type         = "ELB"
+  health_check_grace_period = 300
+
   launch_template {
     id      = aws_launch_template.main.id
     version = "$Latest"
