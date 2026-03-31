@@ -90,7 +90,7 @@ module "rds" {
   allocated_storage         = 20
   component                 = "rds"
   engine                    = "mysql"
-  engine_version            = "8.0.40"
+  engine_version            = "8.0.44"
   env                       = var.env
   family                    = "mysql8.0"
   instance_class            = "db.t3.micro"
