@@ -27,4 +27,3 @@ kms_key_id          = "arn:aws:kms:us-east-1:001068834011:key/3cfc6411-5d6b-443c
 max_capacity = "5"
 min_capacity = "1"
 
-
