@@ -10,6 +10,7 @@ resource "aws_security_group" "main" {
     to_port     = var.app_port
     protocol    = "TCP"
     cidr_blocks = var.server_app_port_sg_cidr
+
   }
 
   ingress {
