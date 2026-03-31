@@ -208,12 +208,6 @@ resource "aws_lb_listener" "frontend-https" {
   }
 }
 
-
-
-
-
-
-
 resource "aws_lb_listener" "backend" {
   count             = var.lb_type != "public" ? 1 : 0
   load_balancer_arn = aws_lb.main.arn
@@ -226,3 +220,5 @@ resource "aws_lb_listener" "backend" {
   }
 
 }
+
+
