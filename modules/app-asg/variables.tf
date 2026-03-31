@@ -21,7 +21,7 @@ variable "lb_app_port_sg_cidr" {}
 variable "lb_subnets" {}
 variable "lb_type" {}
 
-variable "certificate_arn" {}
+#variable "certificate_arn" {}
 variable "kms_key_id" {}
 variable "min_capacity" {}
 variable "max_capacity" {}
