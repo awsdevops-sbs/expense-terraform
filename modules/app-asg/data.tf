@@ -11,12 +11,10 @@
 # }
 
 data "aws_ami" "ami" {
-  owners = ["973714476881"]
 
-  filter {
-    name   = "image-id"
-    values = ["ami-0220d79f3f480ecf5"]
-  }
+  name_regex = "golden-ami-*"
+  owners = ["self"]
+  most_recent = true
 }
 
 data "vault_generic_secret" "ssh" {
