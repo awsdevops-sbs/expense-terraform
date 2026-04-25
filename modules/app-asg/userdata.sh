@@ -19,6 +19,7 @@ ansible-pull -i localhost, -U https://github.com/awsdevops-sbs/ansible.git expen
 -e env=${env} \
 -e vault_token=${vault_token} \
 -e @~/secrets.json \
+-e only_deployment=false \
 &>> /opt/ansible.log
 
 echo "Completed setup at $(date)" &>> /opt/ansible.log
