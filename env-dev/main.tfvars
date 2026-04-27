@@ -18,7 +18,7 @@ public_subnet      =["10.10.0.192/27","10.10.0.224/27"]
 availability_zone =["us-east-1a","us-east-1b"]
 
 bastion_nodes = ["172.31.79.79/32"]
-prometheus_nodes = ["172.31.16.63/32"]
+prometheus_nodes = ["172.31.41.215/32"]
 
 acm_certificate_arn = "arn:aws:acm:us-east-1:001068834011:certificate/8aaa81fe-b9dc-4efe-a76e-2bacefc4a5f3"
 kms_key_id          = "arn:aws:kms:us-east-1:001068834011:key/3cfc6411-5d6b-443c-9eed-e8df63be6485"
