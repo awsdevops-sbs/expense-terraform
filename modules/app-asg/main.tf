@@ -41,9 +41,6 @@ resource "aws_security_group" "main" {
   }
 }
 
-
-
-
 resource "aws_launch_template" "main" {
   name                   = "${var.component}-${var.env}"
   image_id               = data.aws_ami.ami.id
@@ -104,7 +101,6 @@ resource "aws_autoscaling_group" "main" {
   }
 }
 
-
 resource "aws_lb_target_group" "main" {
   name     = "${var.component}-${var.env}-tg"
   port     = var.app_port
@@ -127,7 +123,6 @@ resource "aws_lb_target_group" "main" {
     Environment = "${var.component}-${var.env}-tg"
   }
 }
-
 
 resource "aws_autoscaling_policy" "cpu_scaling" {
   name                   = "target-cpu"
@@ -181,6 +176,7 @@ resource "aws_lb" "main" {
     Environment = "${var.env}-${var.component}-alb"
   }
 }
+
 resource "aws_route53_record" "load-balancer" {
   name    = "${var.component}-${var.env}"
   type    = "CNAME"
@@ -206,7 +202,6 @@ resource "aws_lb_listener" "frontend-http" {
   }
 
 }
-
 
 resource "aws_lb_listener" "frontend-https" {
   count = var.lb_type == "public" ? 1 : 0
