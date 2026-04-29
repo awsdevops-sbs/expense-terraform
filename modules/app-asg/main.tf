@@ -22,6 +22,14 @@ resource "aws_security_group" "main" {
   }
 
   ingress {
+    #description = "prometheus"
+    from_port   = 2019
+    to_port     =  2019
+    protocol    = "TCP"
+    cidr_blocks = var.prometheus_nodes
+  }
+
+  ingress {
     #description = "SSH"
     from_port   = 22
     to_port     = 22
